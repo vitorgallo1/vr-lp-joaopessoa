@@ -1,0 +1,6 @@
+# A LP inteira pode ser indexada, menos o painel de estoque.
+User-agent: *
+Allow: /
+Disallow: /admin
+
+Sitemap: https://vrjoaopessoa.netlify.app/sitemap.xml

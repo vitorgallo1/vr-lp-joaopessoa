@@ -10,7 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
-import { UNIDADE } from "@/config/unidade";
+import { SITE_URL, UNIDADE } from "@/config/unidade";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 const TITULO = `${UNIDADE.nome} — Motos novas, seminovas e serviço premium`;
@@ -91,12 +91,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITULO },
       { name: "twitter:description", content: DESCRICAO },
-      // PENDENTE: imagem de compartilhamento própria (1200x630) em public/og-image.jpg.
-      // A og:image da LP de Biguaçu ficou de fora de propósito: era um screenshot
-      // hospedado no storage do Lovable, que some quando o projeto sai de lá.
+      // Imagem de compartilhamento: precisa ser URL absoluta, porque quem lê é o
+      // WhatsApp, não o navegador do visitante.
+      { property: "og:image", content: `${SITE_URL}/og-image.jpg` },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: `${UNIDADE.nome} — showroom de motos` },
+      { property: "og:url", content: SITE_URL },
+      { property: "og:site_name", content: UNIDADE.nome },
+      { name: "twitter:image", content: `${SITE_URL}/og-image.jpg` },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
+      // Canônica: o site responde no domínio próprio e no endereço do Netlify, e sem
+      // isto o Google trata os dois como páginas concorrentes.
+      { rel: "canonical", href: `${SITE_URL}/` },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },

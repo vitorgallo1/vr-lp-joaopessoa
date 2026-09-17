@@ -14,26 +14,31 @@ export const UNIDADE = {
   uf: "PB",
 
   endereco: {
-    linha1: "CasaTudo Center — Loja 13B-1",
-    linha2: "Rua Hortência Helena de Amorim Brito, 13008",
+    linha1: "Complexo CasaTudo — BR-230",
+    linha2: "Rua Hortência Helena de Amorim Brito, 13008 — Loja 13B-1",
     linha3: "Jardim América — Cabedelo / PB, 58102-660",
     // Uma linha só, para o rodapé.
     curto:
-      "CasaTudo Center — Rua Hortência Helena de Amorim Brito, 13008, Jardim América, Cabedelo/PB",
-    // Consulta usada no embed do Google Maps.
-    busca:
-      "CasaTudo Center, Rua Hortência Helena de Amorim Brito, 13008, Jardim América, Cabedelo - PB, 58102-660",
+      "Complexo CasaTudo (BR-230) — Rua Hortência Helena de Amorim Brito, 13008, Loja 13B-1, Jardim América, Cabedelo/PB",
+    // Consulta usada no embed do Google Maps. Rua, número e CEP resolvem sozinhos; o
+    // nome do complexo é o que costuma confundir a busca, então fica de fora.
+    busca: "Rua Hortência Helena de Amorim Brito, 13008, Jardim América, Cabedelo - PB, 58102-660",
   },
 
-  // PENDENTE: número da própria unidade. Hoje aponta para o WhatsApp de Biguaçu.
+  // Telefone da loja, usado no link do WhatsApp e no botão "Ligar para a loja".
   whatsapp: {
-    e164: "5548988392212",
-    exibicao: "(48) 98839-2212",
+    e164: "5583991964482",
+    exibicao: "(83) 99196-4482",
   },
 
   // PENDENTE: confirmar com a loja. Herdado de Biguaçu.
   horario: ["Seg a Sáb — 8h às 20h", "Domingo — fechado"],
 } as const;
+
+// Endereço público do site. Alimenta a URL canônica e a imagem de compartilhamento.
+// Quando o domínio próprio entrar, trocar aqui, no public/robots.txt e no
+// public/sitemap.xml — são os três lugares que guardam o endereço absoluto.
+export const SITE_URL = "https://vrjoaopessoa.netlify.app";
 
 export const MAPS_EMBED_URL = `https://www.google.com/maps?q=${encodeURIComponent(
   UNIDADE.endereco.busca,

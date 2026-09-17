@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Uma página só: a LP é de rolagem única, e as âncoras (#linha, #visite) não são
+     URLs próprias. Quando o domínio definitivo entrar, trocar o endereço aqui, no
+     robots.txt e em SITE_URL (src/config/unidade.ts). -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://vrjoaopessoa.netlify.app/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

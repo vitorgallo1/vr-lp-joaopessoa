@@ -11,7 +11,6 @@ import {
   LayoutGrid,
   MessageCircle,
   Percent,
-  Quote,
   ShieldCheck,
   Wallet,
   Zap,
@@ -70,7 +69,6 @@ function Index() {
       <Hero />
       <Stats />
       <Lineup />
-      <Testimonials />
       <Financing />
       <Experience />
       <Services />
@@ -1054,86 +1052,11 @@ function Financing() {
   );
 }
 
-function initials(name: string) {
-  return name
-    .split(" ")
-    .filter(Boolean)
-    .map((p) => p[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
-
-// PENDENTE: depoimentos de clientes desta unidade. Os quatro abaixo são reais, mas
-// de clientes da loja de Biguaçu — por isso o kicker fala da rede e as cidades ficam
-// como são. Trocar assim que a unidade tiver os seus.
-function Testimonials() {
-  const items = [
-    {
-      n: "Rafael M.",
-      c: "Biguaçu/SC",
-      t: "Terceira moto que compro na VR. Atendimento honesto, entrega no prazo e a oficina é referência. Recomendo de olhos fechados.",
-    },
-    {
-      n: "Camila B.",
-      c: "Palhoça/SC",
-      t: "Fui esperando pressão de vendedor e encontrei gente que ouviu. Saí com a moto certa e uma condição que coube no bolso.",
-    },
-    {
-      n: "Diego P.",
-      c: "São José/SC",
-      t: "Comprei uma trail, veio revisada e com documentação em dia. É o padrão que a gente sempre quis num revendedor.",
-    },
-    {
-      n: "Jeferson",
-      c: "Florianópolis/SC",
-      t: "Comprei uma moto 0km. Excelente atendimento e entrega.",
-    },
-  ];
-  return (
-    <section className="border-y border-border bg-surface">
-      <div className="mx-auto max-w-7xl px-5 pb-20 pt-10 lg:px-8 lg:pb-24 lg:pt-14">
-        <SectionHeading
-          kicker="Quem já pilota com a rede VR"
-          title="Confiança que se conta em quilômetros."
-          className="mb-12 max-w-2xl"
-        />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((r) => (
-            <figure
-              key={r.n}
-              className="relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card p-6 shadow-card"
-            >
-              <Quote
-                className="absolute -right-3 -top-3 h-20 w-20 text-primary/10"
-                strokeWidth={1}
-                aria-hidden
-              />
-              <div className="relative flex gap-0.5 text-primary" aria-label="5 estrelas">
-                ★★★★★
-              </div>
-              <blockquote className="relative mt-4 flex-1 text-sm leading-relaxed text-foreground">
-                “{r.t}”
-              </blockquote>
-              <figcaption className="relative mt-6 flex items-center gap-3 border-t border-border pt-4">
-                <span
-                  className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-primary/10 text-xs font-bold text-primary"
-                  aria-hidden
-                >
-                  {initials(r.n)}
-                </span>
-                <div className="text-sm">
-                  <p className="font-semibold text-ink">{r.n}</p>
-                  <p className="text-xs text-muted-foreground">{r.c}</p>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
+// A seção de depoimentos saiu em 18/09. Os quatro que existiam eram de clientes
+// reais, mas da loja de Biguaçu — numa LP de João Pessoa, ou viravam promessa vazia,
+// ou dariam a entender que a unidade nova já tem histórico. Volta quando a loja tiver
+// os seus: o componente está no histórico do git, e o layout (grade de 4 cartões com
+// aspas) é o mesmo da LP de Biguaçu.
 
 function Visit() {
   return (

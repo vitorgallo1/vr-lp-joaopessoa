@@ -15,7 +15,9 @@ import {
   Wallet,
   Zap,
 } from "lucide-react";
-import heroWallpaper from "@/assets/wallpaperhero.png";
+// Arte do hero enviada pela loja: as motos na frente do showroom, no fim de tarde.
+// O lado esquerdo é escuro de propósito — é onde o texto assenta.
+import heroArte from "@/assets/hero-showroom.webp";
 import heroBike from "@/assets/hero-bike.jpg";
 // Derivada de uma foto de 3458px — o slot renderiza a ~600px. O original (8,6 MB) não
 // veio para este repositório; está no da LP de Biguaçu, de onde a foto saiu.
@@ -188,26 +190,32 @@ function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       <img
-        src={heroWallpaper}
-        alt={`Showroom ${UNIDADE.nome}`}
-        width={1717}
-        height={916}
-        className="absolute inset-0 -z-10 h-full w-full object-cover"
+        src={heroArte}
+        alt={`Motos em frente ao showroom da ${UNIDADE.nome}`}
+        width={2048}
+        height={768}
+        // A arte é bem panorâmica (2048x768). Em tela alta o object-cover corta as
+        // laterais, então o enquadramento puxa para a direita do centro, onde estão
+        // as motos — sem isso o celular mostra parede e planta.
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-[62%_center]"
       />
       <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-hero" />
+      {/* No celular o texto ocupa a largura toda e passa por cima do farol aceso, que é
+          o ponto mais claro da arte. Este véu extra só existe abaixo de sm. */}
+      <div aria-hidden className="absolute inset-0 -z-10 bg-black/35 sm:hidden" />
       <div className="mx-auto max-w-[1400px] px-5 pb-20 pt-20 sm:px-8 lg:px-6 lg:pb-28 lg:pt-28">
-        <div className="max-w-2xl">
+        <div className="max-w-3xl">
           <span className="inline-flex items-center gap-2 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary-foreground">
             Grupo VR • Franquia oficial
           </span>
-          <h1 className="mt-6 font-display text-[42px] font-bold leading-[1.02] tracking-tight text-white sm:text-6xl lg:text-[68px]">
+          <h1 className="mt-6 font-display text-[40px] font-bold leading-[1.04] tracking-tight text-white sm:text-[56px] lg:text-[64px]">
             Sua próxima moto
             <br />
-            <span className="text-primary">começa aqui.</span>
+            <span className="text-primary">começa em João Pessoa.</span>
           </h1>
           <p className="mt-6 max-w-lg text-base text-white/75 sm:text-lg">
-            Mais de 30 modelos no showroom, oficina certificada e financiamento aprovado em 24h.
-            Escolha a sua e saia pilotando.
+            Honda, Yamaha, Suzuki, Shineray e mais — todas no mesmo showroom, na BR-230. Você
+            escolhe pelo modelo, não pela marca.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
@@ -225,14 +233,17 @@ function Hero() {
               Simular no WhatsApp
             </a>
           </div>
-          <dl className="mt-12 grid max-w-lg grid-cols-3 gap-6 border-t border-white/15 pt-6 text-left">
+          <dl className="mt-12 grid max-w-lg grid-cols-2 gap-x-6 gap-y-5 border-t border-white/15 pt-6 text-left sm:grid-cols-3">
             {[
-              { k: "+30", v: "modelos" },
-              { k: "12 meses", v: "de garantia" },
-              { k: "48h", v: "para pilotar" },
+              // Números conferíveis na própria página: a faixa de marcas tem 9 logos e
+              // a seção de financiamento lista 8 financeiras. Nada de promessa que a
+              // unidade nova ainda não pode cumprir.
+              { k: "9 marcas", v: "no showroom" },
+              { k: "8 bancos", v: "no financiamento" },
+              { k: "BR-230", v: "fácil de chegar" },
             ].map((s) => (
               <div key={s.v}>
-                <dt className="font-display text-2xl font-bold text-white">{s.k}</dt>
+                <dt className="font-display text-xl font-bold text-white sm:text-2xl">{s.k}</dt>
                 <dd className="mt-1 text-xs uppercase tracking-widest text-white/60">{s.v}</dd>
               </div>
             ))}
